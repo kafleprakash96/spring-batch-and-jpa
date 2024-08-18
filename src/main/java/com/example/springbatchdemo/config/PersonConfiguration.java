@@ -1,5 +1,11 @@
-package com.example.springbatchdemo;
+package com.example.springbatchdemo.config;
 
+import com.example.springbatchdemo.utils.JobCompletionNotification;
+import com.example.springbatchdemo.utils.PersonItemProcessor;
+import com.example.springbatchdemo.utils.PersonItemWriter;
+import com.example.springbatchdemo.model.Person;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -15,11 +21,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@EnableJpaRepositories
 public class PersonConfiguration {
 
     @Autowired
-    private PersonItemWriter writer;
+    JobCompletionNotification listener;
 
     @Bean
     public FlatFileItemReader<Person> reader(){
@@ -38,9 +43,16 @@ public class PersonConfiguration {
     }
 
     @Bean
-    public Job importPersonJob(JobRepository jobRepository,Step step1){
+    public PersonItemWriter writer(){
+        return new PersonItemWriter();
+    }
+
+    @Bean
+    public Job importPersonJob(JobRepository jobRepository,
+                               Step step1){
         return new JobBuilder("importPersonJob",jobRepository)
                 .start(step1)
+                .listener(listener)
                 .build();
     }
 

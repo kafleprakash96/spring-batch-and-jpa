@@ -1,4 +1,4 @@
-package com.example.springbatchdemo;
+package com.example.springbatchdemo.model;
 
 import jakarta.persistence.*;
 
