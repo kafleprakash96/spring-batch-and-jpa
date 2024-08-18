@@ -1,5 +1,6 @@
 package com.example.springbatchdemo.config;
 
+import com.example.springbatchdemo.utils.JobCompletionNotification;
 import com.example.springbatchdemo.utils.PersonItemProcessor;
 import com.example.springbatchdemo.utils.PersonItemWriter;
 import com.example.springbatchdemo.model.Person;
@@ -19,6 +20,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 public class PersonConfiguration {
+
+    @Autowired
+    JobCompletionNotification listener;
 
     @Bean
     public FlatFileItemReader<Person> reader(){
@@ -42,9 +46,11 @@ public class PersonConfiguration {
     }
 
     @Bean
-    public Job importPersonJob(JobRepository jobRepository,Step step1){
+    public Job importPersonJob(JobRepository jobRepository,
+                               Step step1){
         return new JobBuilder("importPersonJob",jobRepository)
                 .start(step1)
+                .listener(listener)
                 .build();
     }
 
