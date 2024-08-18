@@ -12,7 +12,7 @@ public class PersonItemProcessor implements ItemProcessor<Person,Person> {
     public Person process(Person person) throws Exception {
         logger.info("Processing person info. Converting to Upper Case");
         if(person != null){
-            logger.info("Successfully fetched person info");
+            logger.info("Successfully fetched person info: {} {}",person.getFirstName(),person.getLastName());
             String firstName = convertToUpperCase(person.getFirstName());
             String lastName = convertToUpperCase(person.getLastName());
             return new Person(firstName,lastName);
