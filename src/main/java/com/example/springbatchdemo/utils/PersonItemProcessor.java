@@ -1,5 +1,6 @@
-package com.example.springbatchdemo;
+package com.example.springbatchdemo.utils;
 
+import com.example.springbatchdemo.model.Person;
 import org.springframework.batch.item.ItemProcessor;
 
 public class PersonItemProcessor implements ItemProcessor<Person,Person> {

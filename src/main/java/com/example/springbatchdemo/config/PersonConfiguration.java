@@ -1,5 +1,8 @@
-package com.example.springbatchdemo;
+package com.example.springbatchdemo.config;
 
+import com.example.springbatchdemo.utils.PersonItemProcessor;
+import com.example.springbatchdemo.utils.PersonItemWriter;
+import com.example.springbatchdemo.model.Person;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -15,11 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@EnableJpaRepositories
 public class PersonConfiguration {
-
-    @Autowired
-    private PersonItemWriter writer;
 
     @Bean
     public FlatFileItemReader<Person> reader(){
@@ -35,6 +34,11 @@ public class PersonConfiguration {
     @Bean
     public PersonItemProcessor processor() {
         return new PersonItemProcessor();
+    }
+
+    @Bean
+    public PersonItemWriter writer(){
+        return new PersonItemWriter();
     }
 
     @Bean

@@ -1,5 +1,7 @@
-package com.example.springbatchdemo;
+package com.example.springbatchdemo.utils;
 
+import com.example.springbatchdemo.repo.PersonRepository;
+import com.example.springbatchdemo.model.Person;
 import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
