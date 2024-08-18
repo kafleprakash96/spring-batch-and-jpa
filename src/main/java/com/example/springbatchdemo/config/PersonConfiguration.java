@@ -4,6 +4,8 @@ import com.example.springbatchdemo.utils.JobCompletionNotification;
 import com.example.springbatchdemo.utils.PersonItemProcessor;
 import com.example.springbatchdemo.utils.PersonItemWriter;
 import com.example.springbatchdemo.model.Person;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
