@@ -1,5 +1,6 @@
-package com.example.springbatchdemo;
+package com.example.springbatchdemo.utils;
 
+import com.example.springbatchdemo.model.Person;
 import org.springframework.batch.item.ItemProcessor;
 
 public class PersonItemProcessor implements ItemProcessor<Person,Person> {
@@ -9,8 +10,6 @@ public class PersonItemProcessor implements ItemProcessor<Person,Person> {
         String firstName = person.getFirstName().toUpperCase();
         String lastName = person.getLastName().toUpperCase();
 
-        Person updatedPerson = new Person(firstName,lastName);
-
-        return updatedPerson;
+        return new Person(firstName,lastName);
     }
 }
