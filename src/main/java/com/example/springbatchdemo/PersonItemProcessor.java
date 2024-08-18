@@ -10,7 +10,6 @@ public class PersonItemProcessor implements ItemProcessor<Person,Person> {
         String lastName = person.getLastName().toUpperCase();
 
         Person updatedPerson = new Person(firstName,lastName);
-        System.out.println("Converting <<< " + person + " >>> to uppercase " + updatedPerson );
 
         return updatedPerson;
     }
