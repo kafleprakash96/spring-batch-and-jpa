@@ -17,4 +17,9 @@ public class JobCompletionNotification implements JobExecutionListener {
             logger.info("Job completed successfully. Job Status: " + jobExecution.getStatus());
         }
     }
+
+    @Override
+    public void beforeJob(JobExecution jobExecution){
+        logger.info("Executing beforeJob: {}", jobExecution.getStatus());
+    }
 }
